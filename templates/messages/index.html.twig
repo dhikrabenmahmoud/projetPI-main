@@ -1,0 +1,66 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Hello MessagesController!{% endblock %}
+
+{% block body %}
+
+    <div class="page-heading normal-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>Discussion</h6>
+                    <h2>{{ OtherUser.userName }}</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-details-page">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <form id="contact" action="" method="post">
+
+                        {% for message in messages %}
+                            <div style="color:white;">
+                                {% if message.senderId.id == userId %}
+
+                                    You:
+                                    <div class="btn btn-primary">
+                                        {{ message.message }}
+                                    </div>
+                                    <br>
+                                {% else %}
+                                    <div style="float: right;color:white;">
+
+                                        {{ message.senderId.userName }}
+                                        <div class="btn btn-danger" >
+                                            <div class="col-lg-9">
+                                                <fieldset>
+                                            {{ message.message }}
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endif %}
+
+                            </div>
+                        {% endfor %}
+
+                        {{ form_start(form) }}
+
+
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
